@@ -1,5 +1,6 @@
 import PostItem from "./PostItem";
 import { postsApiReponse } from "../../types/types";
+import styles from "./postList.module.css";
 
 interface IProps {
   posts: postsApiReponse[];
@@ -8,7 +9,7 @@ interface IProps {
 
 const PostsList = ({ posts, setPage }: IProps) => {
   return (
-    <ul className=" post-list">
+    <ul className={styles["post-list"]}>
       {posts.map(post => {
         const { id, userId, title } = post;
         return (

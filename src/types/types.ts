@@ -4,3 +4,11 @@ export type postsApiReponse = {
   title: string;
   body: string;
 };
+
+export type commentApiResponse = {
+  postId: number;
+  id: number;
+  name: string;
+  email: string;
+  body: string;
+};

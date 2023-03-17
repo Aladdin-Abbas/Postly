@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./postSearch.module.css";
 interface IProps {
   search: string;
   searchHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -6,7 +7,7 @@ interface IProps {
 
 const PostSearch = ({ search, searchHandler }: IProps) => {
   return (
-    <form className="nosubmit">
+    <form className={`nosubmit ${styles["search-form"]}`}>
       <input
         className="nosubmit"
         type="search"
