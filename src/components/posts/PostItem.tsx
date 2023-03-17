@@ -2,6 +2,7 @@ import "../../index.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContextProvider";
+import styles from "./postItem.module.css";
 
 interface IProps {
   id: number;
@@ -16,7 +17,7 @@ const PostItem = ({ id, userId, title, setPage }: IProps) => {
   const navigate = useNavigate();
 
   return (
-    <section className="post-item">
+    <section className={styles["post-item"]}>
       <h3>
         <span
           onClick={() => {

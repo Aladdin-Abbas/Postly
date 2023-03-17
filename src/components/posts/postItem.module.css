@@ -1,0 +1,36 @@
+.post-item {
+  background-color: white;
+  border: 1px solid #dad9d9;
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 280px;
+  width: 30%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-item:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.post-item h3 {
+  margin: 0;
+}
+
+.post-item span {
+  margin-top: auto;
+}
+
+@media (min-width: 0px) {
+  .post-item {
+    width: 100%;
+  }
+}
+
+@media (min-width: 981px) {
+  .post-item {
+    width: 30%;
+  }
+}

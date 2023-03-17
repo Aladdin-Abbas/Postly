@@ -1,8 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Posts from "./components/posts/Posts";
 import UserContextProvider from "./context/UserContextProvider";
-import postDetails from "./components/postDetails/postDetails";
+const Posts = React.lazy(() => import("./components/posts/Posts"));
+const PostDetails = React.lazy(
+  () => import("./components/postDetails/PostDetails")
+);
 
 function App() {
   return (
@@ -10,9 +12,30 @@ function App() {
       <UserContextProvider>
         <section className="container">
           <Routes>
-            <Route path="/" Component={Posts} />
-            <Route path="/users/:userId" Component={Posts} />
-            <Route path="/:postId" Component={postDetails} />
+            <Route
+              index
+              element={
+                <React.Suspense fallback={<>...</>}>
+                  <Posts />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/users/:userId"
+              element={
+                <React.Suspense fallback={<>...</>}>
+                  <Posts />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/:postId"
+              element={
+                <React.Suspense fallback={<>...</>}>
+                  <PostDetails />
+                </React.Suspense>
+              }
+            />
           </Routes>
         </section>
       </UserContextProvider>
