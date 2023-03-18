@@ -1,5 +1,6 @@
 import styles from "./Post.module.css";
 import usePostDetails from "../../hooks/usePostDetails";
+import Loader from "../loader/Loader";
 
 const Post = () => {
   const { data, isError, isLoading, isRefetching, user } = usePostDetails();
@@ -11,7 +12,7 @@ const Post = () => {
   }
 
   if (isLoading || isRefetching) {
-    content = <p>Loading...</p>;
+    content = <Loader />;
   }
 
   if (data) {

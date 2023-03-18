@@ -24,9 +24,10 @@ ul {
 }
 
 .container {
-  margin: 0 auto;
+  margin: 80px auto 0;
   max-width: 100%;
   width: 70em;
+  padding-top: 20px;
 }
 
 .post-details {
