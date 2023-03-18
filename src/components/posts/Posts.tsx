@@ -2,6 +2,7 @@ import PostsList from "./PostsList";
 import PostSearch from "./PostSearch";
 import PostPagination from "./PostPagination";
 import usePosts from "../../hooks/usePosts";
+import Loader from "../loader/Loader";
 
 const Posts = () => {
   const {
@@ -26,7 +27,7 @@ const Posts = () => {
   }
 
   if (isLoading || isRefetching) {
-    content = <p>Loading...</p>;
+    content = <Loader />;
   }
 
   if (data.length > 0) {

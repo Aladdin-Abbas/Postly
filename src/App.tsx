@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Loader from "./components/loader/Loader";
+import SharedLayout from "./components/sharedLayout/SharedLayout";
 import UserContextProvider from "./context/UserContextProvider";
 const Posts = React.lazy(() => import("./components/posts/Posts"));
 const PostDetails = React.lazy(
@@ -10,12 +12,18 @@ function App() {
   return (
     <BrowserRouter>
       <UserContextProvider>
-        <section className="container">
-          <Routes>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
             <Route
               index
               element={
-                <React.Suspense fallback={<>...</>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <Loader />
+                    </>
+                  }
+                >
                   <Posts />
                 </React.Suspense>
               }
@@ -23,7 +31,13 @@ function App() {
             <Route
               path="/users/:userId"
               element={
-                <React.Suspense fallback={<>...</>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <Loader />
+                    </>
+                  }
+                >
                   <Posts />
                 </React.Suspense>
               }
@@ -31,13 +45,19 @@ function App() {
             <Route
               path="/:postId"
               element={
-                <React.Suspense fallback={<>...</>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <Loader />
+                    </>
+                  }
+                >
                   <PostDetails />
                 </React.Suspense>
               }
             />
-          </Routes>
-        </section>
+          </Route>
+        </Routes>
       </UserContextProvider>
     </BrowserRouter>
   );
