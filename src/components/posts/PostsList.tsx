@@ -4,23 +4,14 @@ import styles from "./postList.module.css";
 
 interface IProps {
   posts: postsApiReponse[];
-  setPage: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-const PostsList = ({ posts, setPage }: IProps) => {
+const PostsList = ({ posts }: IProps) => {
   return (
     <ul className={styles["post-list"]}>
       {posts.map(post => {
         const { id, userId, title } = post;
-        return (
-          <PostItem
-            id={id}
-            userId={userId}
-            title={title}
-            key={id}
-            setPage={setPage}
-          />
-        );
+        return <PostItem id={id} userId={userId} title={title} key={id} />;
       })}
     </ul>
   );

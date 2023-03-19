@@ -32,6 +32,13 @@ const usePosts = () => {
   };
 
   useEffect(() => {
+    if (userId) {
+      setPage(1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
+
+  useEffect(() => {
     const controller = new AbortController();
 
     const fetchData = async () => {
