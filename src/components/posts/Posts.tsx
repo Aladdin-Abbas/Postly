@@ -11,7 +11,6 @@ const Posts = () => {
     isLoading,
     isRefetching,
     page,
-    setPage,
     search,
     totalPages,
     pageChangeHandler,
@@ -34,7 +33,7 @@ const Posts = () => {
     content = (
       <>
         <PostSearch search={search} searchHandler={searchHandler} />
-        <PostsList posts={data} setPage={setPage} />
+        <PostsList posts={data} />
         {!userId && !search && (
           <PostPagination
             page={page}
@@ -47,12 +46,10 @@ const Posts = () => {
   }
 
   return (
-    // <section className="container">
     <>
       <h1>{userId ? `${user?.name} posts` : "All posts"}</h1>
       {content}
     </>
-    // </section>
   );
 };
 
