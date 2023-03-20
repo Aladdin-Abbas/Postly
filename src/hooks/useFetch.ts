@@ -4,7 +4,8 @@ import postApi from "../apis/postApi";
 const useInitialFetch = <T = unknown>(
   initialData: any,
   url: any,
-  dependencies: any
+  dependencies: any,
+  params?: any
 ) => {
   const [data, setData] = useState<T | null>(initialData);
   const [isError, setIsError] = useState(false);
@@ -25,6 +26,7 @@ const useInitialFetch = <T = unknown>(
 
       try {
         const response = await postApi.get(url, {
+          params,
           signal: controller.signal,
         });
         const json = (await response.data) as T;

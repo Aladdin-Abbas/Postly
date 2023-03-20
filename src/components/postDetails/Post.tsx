@@ -7,12 +7,12 @@ const Post = () => {
 
   let content;
 
-  if (isError) {
-    content = <p>Something went wrong please try again later</p>;
-  }
-
   if (isLoading || isRefetching) {
     content = <Loader />;
+  }
+
+  if (isError) {
+    content = <p>Something went wrong please try again later</p>;
   }
 
   if (data) {

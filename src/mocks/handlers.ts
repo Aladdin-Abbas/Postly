@@ -4,6 +4,8 @@ import {
   postsMockup,
   userPostsMockup,
   secondPagePosts,
+  commentsMockup,
+  postDetailsMockup,
 } from "./mockupData";
 
 export const handlers = [
@@ -23,7 +25,25 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(response));
   }),
 
+  rest.get(
+    "https://jsonplaceholder.typicode.com/posts/1/comments",
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json(commentsMockup));
+    }
+  ),
+
+  rest.get("https://jsonplaceholder.typicode.com/posts/1", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(postDetailsMockup));
+  }),
+
   rest.get("https://jsonplaceholder.typicode.com/users", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(usersMockup));
   }),
+
+  rest.post(
+    "https://jsonplaceholder.typicode.com/posts/1/comments",
+    (req, res, context) => {
+      return res(context.status(201), context.json({ status: 200 }));
+    }
+  ),
 ];

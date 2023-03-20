@@ -1,16 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import postApi from "../apis/postApi";
 import { UserContext } from "../context/UserContextProvider";
 import { postsApiReponse } from "../types/types";
+import useInitialFetch from "./useFetch";
 const pageLimit = 20;
 
 const usePosts = () => {
-  const [data, setData] = useState<postsApiReponse[]>([]);
-  const [isError, setIsError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isRefetching, setIsRefetching] = useState(false);
-
   const { userId } = useParams();
 
   const [page, setPage] = useState<number | null>(1);
@@ -38,39 +33,14 @@ const usePosts = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    const fetchData = async () => {
-      if (!data.length) {
-        setIsLoading(true);
-      } else {
-        setIsRefetching(true);
-      }
-
-      try {
-        const response = await postApi.get("/posts", {
-          params: { userId, _page: page, _limit: pageLimit, q: search },
-          signal: controller.signal,
-        });
-        const json = (await response.data) as postsApiReponse[];
-
-        setData(json);
-      } catch (error) {
-        setIsError(true);
-
-        return;
-      }
-      setIsError(false);
-      setIsLoading(false);
-      setIsRefetching(false);
-    };
-
-    fetchData();
-
-    return () => controller.abort();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId, page, search]);
+  const { data, isError, isLoading, isRefetching } = useInitialFetch<
+    postsApiReponse[]
+  >([], "/posts", [userId, page, search], {
+    userId,
+    _page: page,
+    _limit: pageLimit,
+    q: search,
+  });
 
   return {
     data,

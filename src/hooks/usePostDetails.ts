@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-// import postApi from "../apis/postApi";
 import { UserContext } from "../context/UserContextProvider";
 import { postsApiReponse } from "../types/types";
 import useInitialFetch from "./useFetch";
