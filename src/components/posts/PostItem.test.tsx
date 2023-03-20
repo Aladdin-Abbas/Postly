@@ -3,9 +3,9 @@ import { render, screen, waitFor } from "../../test-utils";
 import PostItem from "./PostItem";
 
 describe("post item", () => {
-  test("render text correctly", () => {
+  test("render text correctly", async () => {
     render(<PostItem id={1} userId={1} title={"hello"} />);
-    expect(screen.getByText("hello")).toBeInTheDocument();
+    expect(await screen.findByText("hello")).toBeInTheDocument();
   });
 
   test("links to have the right href", async () => {

@@ -106,7 +106,10 @@ const useCommentsForm = ({ data, setData, postId }: IProps) => {
         }
       });
     } catch (error) {
-      console.error(error);
+      setFormErrors(prevSate => ({
+        ...prevSate,
+        email: "something went wrong try later",
+      }));
       return;
     }
   };
