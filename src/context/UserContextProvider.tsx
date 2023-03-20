@@ -69,7 +69,7 @@ export default function UserContextProvider({ children }: IProps) {
         const json = (await response.data) as usersApiResponse;
         setUsers(json);
       } catch (error) {
-        console.error(error);
+        console.log("something went wrong try again later");
         return;
       }
     };

@@ -58,7 +58,7 @@ const usePosts = () => {
         setData(json);
       } catch (error) {
         setIsError(true);
-        console.error(error);
+
         return;
       }
       setIsError(false);
