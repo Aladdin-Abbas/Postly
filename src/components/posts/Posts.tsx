@@ -29,7 +29,7 @@ const Posts = () => {
     content = <p>Something went wrong please try again later</p>;
   }
 
-  if (data.length > 0) {
+  if (data && data.length > 0) {
     content = (
       <>
         <PostSearch search={search} searchHandler={searchHandler} />
